@@ -6,8 +6,13 @@ public class WizardController : MonoBehaviour
 {
     public float walkingspeed = 2.0f;
 
+    public Collider2D myCollider;
+
     private Rigidbody2D rigidbody2d;
     private Animator animator;
+
+    Vector2 lookDirection = new Vector2(1,0);
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +30,14 @@ public class WizardController : MonoBehaviour
         position.x = position.x + walkingspeed * horizontal * Time.deltaTime;
         position.y = position.y + walkingspeed * vertical * Time.deltaTime;
         transform.position = position;
+
+        Vector2 move = new Vector2(horizontal, vertical);
+
+        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        {
+            lookDirection.Set(move.x, move.y);
+            lookDirection.Normalize();
+        }
 
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
@@ -61,5 +74,9 @@ public class WizardController : MonoBehaviour
                 walkingspeed = 2.0f;
             }
         }
+    }
+
+    public void Transparent() {
+        myCollider.enabled = false;
     }
 }
