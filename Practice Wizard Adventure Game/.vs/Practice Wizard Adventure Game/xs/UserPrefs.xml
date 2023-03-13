@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{36080C58-05D0-F17F-E7EB-5EF700E8C919}|">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c277cd32-30d0-466f-8313-b5a9428defa5" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DivineBush.cs">
+    <Files>
+      <File FileName="Assets/Scripts/WizardController.cs" Line="76" Column="10" />
+      <File FileName="Assets/Scripts/DivineStone.cs" Line="23" Column="10" />
+      <File FileName="Assets/Scripts/NonePlayableCharacter.cs" Line="41" Column="29" />
+      <File FileName="Assets/Scripts/Start.cs" Line="12" Column="51" />
+      <File FileName="Assets/Scripts/DivineBush.cs" Line="17" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Practice Wizard Adventure Game" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

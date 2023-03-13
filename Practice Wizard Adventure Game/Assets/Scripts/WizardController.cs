@@ -13,12 +13,15 @@ public class WizardController : MonoBehaviour
 
     Vector2 lookDirection = new Vector2(1,0);
 
+    public ParticleSystem dustEffect;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        dustEffect.Stop();
     }
 
     // Update is called once per frame
@@ -65,6 +68,7 @@ public class WizardController : MonoBehaviour
             if (stateInfo.IsName("RunL") || stateInfo.IsName("RunR"))
             {
                 walkingspeed = 5.0f;
+                dustEffect.Play();
             }
         }
         else {
@@ -72,6 +76,7 @@ public class WizardController : MonoBehaviour
             if (!stateInfo.IsName("RunL") || !stateInfo.IsName("RunR"))
             {
                 walkingspeed = 2.0f;
+                dustEffect.Stop();
             }
         }
     }
