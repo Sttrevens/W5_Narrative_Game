@@ -15,6 +15,19 @@ public class WizardController : MonoBehaviour
 
     public ParticleSystem dustEffect;
 
+    public int maxHealth = 5;
+
+    public int health { get { return currentHealth; } }
+    int currentHealth;
+
+    public GameObject fireballPrefab;
+
+    public float delayTime = 0;
+
+    private bool isWaiting = false;
+
+    private bool canLaunch = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +35,8 @@ public class WizardController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         dustEffect.Stop();
+
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -41,6 +56,7 @@ public class WizardController : MonoBehaviour
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
         }
+        //Debug.Log(lookDirection + " this is look direction.");
 
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
@@ -79,9 +95,65 @@ public class WizardController : MonoBehaviour
                 dustEffect.Stop();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if (canLaunch)
+            {
+                if (!isWaiting)
+                {
+                    isWaiting = true;
+                    Invoke("Launch", delayTime);
+                }
+                animator.SetBool("Launch", true);
+            }
+        }
+
+        if (stateInfo.IsName("Launch") && stateInfo.normalizedTime >= 1.0f)
+        {
+            animator.SetBool("Launch", false);
+        }
+
+        if (stateInfo.IsName("LaunchL") && stateInfo.normalizedTime >= 1.0f)
+        {
+            animator.SetBool("Launch", false);
+        }
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        //if (amount < 0)
+        //{
+        //    if (isInvincible)
+        //        return;
+
+        //    isInvincible = true;
+        //    invincibleTimer = timeInvincible;
+        //}
+
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+
+        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 
     public void Transparent() {
         myCollider.enabled = false;
+    }
+
+    void Launch()
+    {
+        GameObject fireballObject = Instantiate(fireballPrefab, rigidbody2d.position, Quaternion.identity);
+
+        Fireball projectile = fireballObject.GetComponent<Fireball>();
+        projectile.Launch(lookDirection, 300);
+
+        animator.SetTrigger("Launch");
+
+        isWaiting = false;
+    }
+
+    public void getLaunch()
+    {
+        canLaunch = true;
     }
 }

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DivineStone : MonoBehaviour
+public class FireballStatue : MonoBehaviour
 {
     Animator animator;
     int i = 0;
+
+    WizardController player;
 
     void Start()
     {
@@ -22,7 +24,8 @@ public class DivineStone : MonoBehaviour
         if (controller != null)
         {
             animator.SetBool("ShineBool", true);
-            controller.Transparent();
+            //controller.Transparent();
+            controller.getLaunch();
             i++;
         }
     }
