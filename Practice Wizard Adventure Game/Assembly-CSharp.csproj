@@ -101,6 +101,7 @@
     <Compile Include="Assets/Scripts/FireStatue.cs" />
     <Compile Include="Assets/Scripts/UIManaBar.cs" />
     <Compile Include="Assets/Scripts/ArcherController.cs" />
+    <Compile Include="Assets/Scripts/Arrow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

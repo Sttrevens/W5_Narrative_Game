@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WizardController : MonoBehaviour
 {
@@ -9,14 +10,14 @@ public class WizardController : MonoBehaviour
 
     public Collider2D myCollider;
 
-    private Rigidbody2D rigidbody2d;
+    private Rigidbody2D wizardRigidbody2d;
     private Animator animator;
 
     Vector2 lookDirection = new Vector2(1,0);
 
     public ParticleSystem dustEffect;
 
-    public int maxHealth = 5;
+    public int maxHealth = 50;
 
     public int health { get { return currentHealth; } }
     int currentHealth;
@@ -35,16 +36,25 @@ public class WizardController : MonoBehaviour
     private bool canLaunch = false;
     private bool canFire = false;
 
+    public float healthRecoveryTime = 0;
+    public float manaRecoveryTime = 0;
+
+    //private bool isRecoveringHealth = false;
+    //private bool isRecoveringMana = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2d = GetComponent<Rigidbody2D>();
+        wizardRigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
         dustEffect.Stop();
 
         currentHealth = maxHealth;
         currentMana = maxMana;
+
+        InvokeRepeating("recoverMana", 0.0f, 1.0f);
+        InvokeRepeating("recoverHealth", 0.0f, 1.0f);
     }
 
     // Update is called once per frame
@@ -135,21 +145,55 @@ public class WizardController : MonoBehaviour
             }
         }
 
+        Vector3 lookDirection3D = new Vector3(lookDirection.x, lookDirection.y, 0);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position + lookDirection3D, 1.0f);
         if (stateInfo.IsName("Fire") && stateInfo.normalizedTime >= 1.0f)
         {
+            // 遍历敌人，造成伤害
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                if (enemy.CompareTag("Enemy"))
+                {
+                    // 调用造成伤害的函数
+                    enemy.GetComponent<ArcherController>().Hit(-2);
+                }
+            }
             animator.SetBool("Fire", false);
         }
 
         if (stateInfo.IsName("FireL") && stateInfo.normalizedTime >= 1.0f)
         {
+            // 遍历敌人，造成伤害
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                if (enemy.CompareTag("Enemy"))
+                {
+                    // 调用造成伤害的函数
+                    enemy.GetComponent<ArcherController>().Hit(-2);
+                }
+            }
             animator.SetBool("Fire", false);
         }
 
-        float regenRate = 1f;
-        if (currentMana < maxMana)
+        if (stateInfo.IsName("HurtR") && stateInfo.normalizedTime >= 1.0f)
         {
-            currentMana += (int)(regenRate * Time.deltaTime);
+            animator.SetBool("isHit", false);
         }
+
+        if (stateInfo.IsName("HurtL") && stateInfo.normalizedTime >= 1.0f)
+        {
+            animator.SetBool("isHit", false);
+        }
+
+        //float regenRate = 1f;
+        //if (currentMana < maxMana)
+        //{
+        //    Debug.Log("regenRate: " + regenRate);
+        //    Debug.Log("Time.deltaTime: " + Time.deltaTime);
+        //    Debug.Log("currentMana: " + currentMana);
+
+        //Invoke("recoverMana", manaRecoveryTime);
+        //}
     }
 
     public void ChangeHealth(int amount)
@@ -166,6 +210,8 @@ public class WizardController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
 
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+
+        animator.SetBool("isHit", true);
     }
 
     public void ChangeMana(int amount)
@@ -183,8 +229,8 @@ public class WizardController : MonoBehaviour
     {
         if (currentMana >= 3)
         {
-            ChangeMana(-3);
-            GameObject fireballObject = Instantiate(fireballPrefab, rigidbody2d.position, Quaternion.identity);
+            ChangeMana(-1);
+            GameObject fireballObject = Instantiate(fireballPrefab, wizardRigidbody2d.position, Quaternion.identity);
 
             Fireball projectile = fireballObject.GetComponent<Fireball>();
             projectile.Launch(lookDirection, 300);
@@ -199,7 +245,7 @@ public class WizardController : MonoBehaviour
     {
         if (currentMana >= 2)
         {
-            ChangeMana(-2);
+            ChangeMana(-3);
             animator.SetBool("Fire", true);
         }
     }
@@ -212,5 +258,19 @@ public class WizardController : MonoBehaviour
     public void getFire()
     {
         canFire = true;
+    }
+
+    void recoverHealth()
+    {
+        currentHealth = Mathf.Clamp(currentHealth + 1, 0, maxHealth);
+
+        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+    }
+
+    void recoverMana()
+    {
+        currentMana = Mathf.Clamp(currentMana + 1, 0, maxMana);
+
+        UIManaBar.instance.SetValue(currentMana / (float)maxMana);
     }
 }
