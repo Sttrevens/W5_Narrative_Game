@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class WizardController : MonoBehaviour
 {
@@ -183,6 +183,11 @@ public class WizardController : MonoBehaviour
         if (stateInfo.IsName("HurtL") && stateInfo.normalizedTime >= 1.0f)
         {
             animator.SetBool("isHit", false);
+        }
+
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene("DeathMenu");
         }
 
         //float regenRate = 1f;
