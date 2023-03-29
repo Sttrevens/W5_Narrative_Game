@@ -55,6 +55,8 @@ public class WizardController : MonoBehaviour
 
         InvokeRepeating("recoverMana", 0.0f, 1.0f);
         InvokeRepeating("recoverHealth", 0.0f, 1.0f);
+
+        Vector2 lookDirection = new Vector2(1, 0);
     }
 
     // Update is called once per frame
@@ -71,10 +73,22 @@ public class WizardController : MonoBehaviour
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
-            lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
+            lookDirection = move.normalized;
         }
-        //Debug.Log(lookDirection + " this is look direction.");
+        // 角色停止移动
+        else
+        {
+            // 如果角色之前朝向右
+            if (lookDirection.x > 0)
+            {
+                lookDirection.Set(1, 0);
+            }
+            // 如果角色之前朝向左
+            else if (lookDirection.x < 0)
+            {
+                lookDirection.Set(-1, 0);
+            }
+        }
 
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 

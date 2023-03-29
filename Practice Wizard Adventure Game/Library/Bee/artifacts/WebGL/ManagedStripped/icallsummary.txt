@@ -280,6 +280,7 @@ UnityEngine.GameObject::GetComponentInChildren
 UnityEngine.GameObject::GetComponentInParent
 UnityEngine.GameObject::Internal_AddComponentWithType
 UnityEngine.GameObject::TryGetComponentInternal
+UnityEngine.GameObject::Find
 UnityEngine.GameObject::get_transform
 UnityEngine.GL::Begin
 UnityEngine.GL::End
@@ -496,6 +497,8 @@ UnityEngine.Object::FindObjectFromInstanceID
 UnityEngine.Object::ForceLoadFromInstanceID
 UnityEngine.Object::Internal_CloneSingle
 UnityEngine.Object::Internal_CloneSingleWithParent
+UnityEngine.Object::Internal_InstantiateSingle_Injected
+UnityEngine.Object::FindObjectsOfType
 UnityEngine.ObjectGUIState::Internal_Create
 UnityEngine.ObjectGUIState::Internal_Destroy
 UnityEngine.ParticleSystem::get_useAutoRandomSeed
@@ -503,6 +506,7 @@ UnityEngine.ParticleSystem::get_time
 UnityEngine.ParticleSystem::EmitOld_Internal
 UnityEngine.ParticleSystem::Emit_Injected
 UnityEngine.ParticleSystem::Emit_Internal
+UnityEngine.ParticleSystem::Play
 UnityEngine.ParticleSystem::Simulate
 UnityEngine.ParticleSystem::Stop
 UnityEngine.ParticleSystem::set_randomSeed
@@ -516,6 +520,7 @@ UnityEngine.Physics::Query_ComputePenetration_Injected
 UnityEngine.Physics::get_defaultPhysicsScene_Injected
 UnityEngine.Physics::Internal_RaycastAll_Injected
 UnityEngine.Physics2D::get_queriesHitTriggers
+UnityEngine.Physics2D::OverlapCircleAll_Internal_Injected
 UnityEngine.Physics2D::GetRayIntersectionAll_Internal_Injected
 UnityEngine.PhysicsScene::Internal_RaycastTest_Injected
 UnityEngine.PhysicsScene::Internal_Raycast_Injected
@@ -680,7 +685,10 @@ UnityEngine.Rigidbody::get_velocity_Injected
 UnityEngine.Rigidbody::set_detectCollisions
 UnityEngine.Rigidbody::set_isKinematic
 UnityEngine.Rigidbody2D::get_mass
+UnityEngine.Rigidbody2D::AddForce_Injected
+UnityEngine.Rigidbody2D::get_position_Injected
 UnityEngine.Rigidbody2D::get_velocity_Injected
+UnityEngine.Rigidbody2D::set_velocity_Injected
 UnityEngine.SceneManagement.SceneManager::get_sceneCount
 UnityEngine.SceneManagement.SceneManager::GetSceneAt_Injected
 UnityEngine.SceneManagement.SceneManagerAPIInternal::LoadSceneAsyncNameIndexInternal_Injected

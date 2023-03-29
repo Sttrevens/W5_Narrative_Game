@@ -1330,6 +1330,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_GameObject_TryGetComponentInternal();
 		Register_UnityEngine_GameObject_TryGetComponentInternal();
 
+		//UnityEngine.GameObject UnityEngine.GameObject::Find(System.String)
+		void Register_UnityEngine_GameObject_Find();
+		Register_UnityEngine_GameObject_Find();
+
 		//UnityEngine.Transform UnityEngine.GameObject::get_transform()
 		void Register_UnityEngine_GameObject_get_transform();
 		Register_UnityEngine_GameObject_get_transform();
@@ -2278,6 +2282,14 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Object_Internal_CloneSingleWithParent();
 		Register_UnityEngine_Object_Internal_CloneSingleWithParent();
 
+		//UnityEngine.Object UnityEngine.Object::Internal_InstantiateSingle_Injected(UnityEngine.Object,UnityEngine.Vector3&,UnityEngine.Quaternion&)
+		void Register_UnityEngine_Object_Internal_InstantiateSingle_Injected();
+		Register_UnityEngine_Object_Internal_InstantiateSingle_Injected();
+
+		//UnityEngine.Object[] UnityEngine.Object::FindObjectsOfType(System.Type,System.Boolean)
+		void Register_UnityEngine_Object_FindObjectsOfType();
+		Register_UnityEngine_Object_FindObjectsOfType();
+
 	//End Registrations for type : UnityEngine.Object
 
 	//Start Registrations for type : UnityEngine.ObjectGUIState
@@ -2313,6 +2325,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.ParticleSystem::Emit_Internal(System.Int32)
 		void Register_UnityEngine_ParticleSystem_Emit_Internal();
 		Register_UnityEngine_ParticleSystem_Emit_Internal();
+
+		//System.Void UnityEngine.ParticleSystem::Play(System.Boolean)
+		void Register_UnityEngine_ParticleSystem_Play();
+		Register_UnityEngine_ParticleSystem_Play();
 
 		//System.Void UnityEngine.ParticleSystem::Simulate(System.Single,System.Boolean,System.Boolean,System.Boolean)
 		void Register_UnityEngine_ParticleSystem_Simulate();
@@ -2385,6 +2401,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Boolean UnityEngine.Physics2D::get_queriesHitTriggers()
 		void Register_UnityEngine_Physics2D_get_queriesHitTriggers();
 		Register_UnityEngine_Physics2D_get_queriesHitTriggers();
+
+		//UnityEngine.Collider2D[] UnityEngine.Physics2D::OverlapCircleAll_Internal_Injected(UnityEngine.PhysicsScene2D&,UnityEngine.Vector2&,System.Single,UnityEngine.ContactFilter2D&)
+		void Register_UnityEngine_Physics2D_OverlapCircleAll_Internal_Injected();
+		Register_UnityEngine_Physics2D_OverlapCircleAll_Internal_Injected();
 
 		//UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::GetRayIntersectionAll_Internal_Injected(UnityEngine.PhysicsScene2D&,UnityEngine.Vector3&,UnityEngine.Vector3&,System.Single,System.Int32)
 		void Register_UnityEngine_Physics2D_GetRayIntersectionAll_Internal_Injected();
@@ -3134,9 +3154,21 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Rigidbody2D_get_mass();
 		Register_UnityEngine_Rigidbody2D_get_mass();
 
+		//System.Void UnityEngine.Rigidbody2D::AddForce_Injected(UnityEngine.Vector2&,UnityEngine.ForceMode2D)
+		void Register_UnityEngine_Rigidbody2D_AddForce_Injected();
+		Register_UnityEngine_Rigidbody2D_AddForce_Injected();
+
+		//System.Void UnityEngine.Rigidbody2D::get_position_Injected(UnityEngine.Vector2&)
+		void Register_UnityEngine_Rigidbody2D_get_position_Injected();
+		Register_UnityEngine_Rigidbody2D_get_position_Injected();
+
 		//System.Void UnityEngine.Rigidbody2D::get_velocity_Injected(UnityEngine.Vector2&)
 		void Register_UnityEngine_Rigidbody2D_get_velocity_Injected();
 		Register_UnityEngine_Rigidbody2D_get_velocity_Injected();
+
+		//System.Void UnityEngine.Rigidbody2D::set_velocity_Injected(UnityEngine.Vector2&)
+		void Register_UnityEngine_Rigidbody2D_set_velocity_Injected();
+		Register_UnityEngine_Rigidbody2D_set_velocity_Injected();
 
 	//End Registrations for type : UnityEngine.Rigidbody2D
 

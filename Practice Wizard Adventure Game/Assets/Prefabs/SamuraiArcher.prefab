@@ -106,7 +106,7 @@ MonoBehaviour:
   moveSpeed: 2
   dustEffect: {fileID: 2540503603994874649}
   arrowPrefab: {fileID: 212653429890018646, guid: 2943ff7d29a2f41dc9a7051f58c83e54, type: 3}
-  delayTime: 1
+  delayTime: 2
 --- !u!61 &2540503603324782468
 BoxCollider2D:
   m_ObjectHideFlags: 0

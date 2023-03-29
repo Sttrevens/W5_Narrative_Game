@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loess Plateau.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/DeathMenu.unity
+    guid: c8b05c4f0f9c149b7956d04ce78ba0c0
   m_configObjects: {}
