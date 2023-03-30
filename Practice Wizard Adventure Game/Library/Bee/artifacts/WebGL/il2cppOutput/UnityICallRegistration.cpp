@@ -1340,6 +1340,14 @@ void RegisterAllStrippedInternalCalls()
 
 	//End Registrations for type : UnityEngine.GameObject
 
+	//Start Registrations for type : UnityEngine.Gizmos
+
+		//System.Void UnityEngine.Gizmos::DrawWireSphere_Injected(UnityEngine.Vector3&,System.Single)
+		void Register_UnityEngine_Gizmos_DrawWireSphere_Injected();
+		Register_UnityEngine_Gizmos_DrawWireSphere_Injected();
+
+	//End Registrations for type : UnityEngine.Gizmos
+
 	//Start Registrations for type : UnityEngine.GL
 
 		//System.Void UnityEngine.GL::Begin(System.Int32)
@@ -3165,6 +3173,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.Rigidbody2D::get_velocity_Injected(UnityEngine.Vector2&)
 		void Register_UnityEngine_Rigidbody2D_get_velocity_Injected();
 		Register_UnityEngine_Rigidbody2D_get_velocity_Injected();
+
+		//System.Void UnityEngine.Rigidbody2D::set_bodyType(UnityEngine.RigidbodyType2D)
+		void Register_UnityEngine_Rigidbody2D_set_bodyType();
+		Register_UnityEngine_Rigidbody2D_set_bodyType();
 
 		//System.Void UnityEngine.Rigidbody2D::set_velocity_Injected(UnityEngine.Vector2&)
 		void Register_UnityEngine_Rigidbody2D_set_velocity_Injected();

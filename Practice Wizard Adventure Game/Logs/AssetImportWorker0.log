@@ -2452,3 +2452,41 @@ Received Import Request.
   path: Assets/Sprites/Tilemap/TilesGDM_84.asset
   artifactKey: Guid(54c759131c95f4fa8bca6227f767bf9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Sprites/Tilemap/TilesGDM_84.asset using Guid(54c759131c95f4fa8bca6227f767bf9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e58174b4504da30ca21e7e588a958c24') in 0.008910 seconds 
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 12.41 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 30 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 30 unused Assets / (172.6 KB). Loaded Objects now: 5251.
+Memory consumption went from 84.9 MB to 84.7 MB.
+Total: 7.412660 ms (FindLiveObjects: 0.534119 ms CreateObjectMapping: 0.372780 ms MarkObjects: 6.292118 ms  DeleteObjects: 0.212151 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 4.47 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 30 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 30 unused Assets / (173.5 KB). Loaded Objects now: 5251.
+Memory consumption went from 84.9 MB to 84.7 MB.
+Total: 6.156880 ms (FindLiveObjects: 0.329000 ms CreateObjectMapping: 0.191139 ms MarkObjects: 5.353876 ms  DeleteObjects: 0.281839 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 

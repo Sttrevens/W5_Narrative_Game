@@ -282,6 +282,7 @@ UnityEngine.GameObject::Internal_AddComponentWithType
 UnityEngine.GameObject::TryGetComponentInternal
 UnityEngine.GameObject::Find
 UnityEngine.GameObject::get_transform
+UnityEngine.Gizmos::DrawWireSphere_Injected
 UnityEngine.GL::Begin
 UnityEngine.GL::End
 UnityEngine.GL::GLClear_Injected
@@ -688,6 +689,7 @@ UnityEngine.Rigidbody2D::get_mass
 UnityEngine.Rigidbody2D::AddForce_Injected
 UnityEngine.Rigidbody2D::get_position_Injected
 UnityEngine.Rigidbody2D::get_velocity_Injected
+UnityEngine.Rigidbody2D::set_bodyType
 UnityEngine.Rigidbody2D::set_velocity_Injected
 UnityEngine.SceneManagement.SceneManager::get_sceneCount
 UnityEngine.SceneManagement.SceneManager::GetSceneAt_Injected
