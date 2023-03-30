@@ -270,7 +270,7 @@ public class WizardController : MonoBehaviour
         // 检测敌人并造成伤害
         Vector3 lookDirection3D = new Vector3(lookDirection.x, lookDirection.y, 0);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position + lookDirection3D, 0.5f);
-        if (stateInfo.normalizedTime >= 1f)
+        if (stateInfo.normalizedTime >= 0.5f)
         {
             foreach (Collider2D enemy in hitEnemies)
             {

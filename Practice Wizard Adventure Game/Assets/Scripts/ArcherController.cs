@@ -18,6 +18,7 @@ public class ArcherController : MonoBehaviour
     public GameObject arrowPrefab;
 
     private bool isWaiting = false;
+    private bool isDead = false;
     public float delayTime = 0;
 
     int health;
@@ -35,45 +36,62 @@ public class ArcherController : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        if (distanceToPlayer > chaseRadius)
+        if (!isDead)
         {
-            // 玩家在第一个检测半径范围之外，弓箭手不动
-            rb.velocity = Vector2.zero;
-            animator.SetBool("isMoving", false);
-            dustEffect.Stop();
-        }
-        else if (distanceToPlayer <= chaseRadius && distanceToPlayer > attackRadius)
-        {
-            animator.SetBool("isShooting", false);
-            // 玩家在第一个检测半径范围内，弓箭手向着玩家移动
-            Vector2 direction = (playerTransform.position - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
-            animator.SetFloat("Direction X", direction.x);
-            animator.SetBool("isMoving", true);
-            dustEffect.Play();
-        }
-        else
-        {
-            // 玩家在第二个检测半径范围内，弓箭手开始射击
-            // 停止移动，执行射击逻辑
-            rb.velocity = Vector2.zero;
-            animator.SetBool("isMoving", false);
-            dustEffect.Stop();
-            // 射击逻辑
-            Vector2 direction = (playerTransform.position - transform.position).normalized;
-            animator.SetFloat("Direction X", direction.x);
-            //animator.SetBool("isShooting", true);
-            if (!isWaiting)
+            if (distanceToPlayer > chaseRadius)
             {
-                isWaiting = true;
-                Invoke("Shoot", delayTime);
+                // 玩家在第一个检测半径范围之外，弓箭手不动
+                rb.velocity = Vector2.zero;
+                animator.SetBool("isMoving", false);
+                dustEffect.Stop();
             }
+            else if (distanceToPlayer <= chaseRadius && distanceToPlayer > attackRadius)
+            {
+                animator.SetBool("isShooting", false);
+                // 玩家在第一个检测半径范围内，弓箭手向着玩家移动
+                Vector2 direction = (playerTransform.position - transform.position).normalized;
+                rb.velocity = direction * moveSpeed;
+                animator.SetFloat("Direction X", direction.x);
+                animator.SetBool("isMoving", true);
+                dustEffect.Play();
+            }
+            else
+            {
+                // 玩家在第二个检测半径范围内，弓箭手开始射击
+                // 停止移动，执行射击逻辑
+                rb.velocity = Vector2.zero;
+                animator.SetBool("isMoving", false);
+                dustEffect.Stop();
+                // 射击逻辑
+                Vector2 direction = (playerTransform.position - transform.position).normalized;
+                animator.SetFloat("Direction X", direction.x);
+                //animator.SetBool("isShooting", true);
+                if (!isWaiting)
+                {
+                    isWaiting = true;
+                    Invoke("Shoot", delayTime);
+                }
+            }
+        }
+
+        if (stateInfo.IsName("ArcherHurtR") && stateInfo.normalizedTime >= 1.0f)
+        {
+            animator.SetBool("isHit", false);
+        }
+
+        if (stateInfo.IsName("ArcherHurtL") && stateInfo.normalizedTime >= 1.0f)
+        {
+            animator.SetBool("isHit", false);
         }
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            animator.SetBool("isDead1", true);
+            animator.SetBool("isDead2", true);
+            isDead = true;
+            rb.isKinematic = true;
         }
     }
 
@@ -92,5 +110,6 @@ public class ArcherController : MonoBehaviour
     public void Hit(int amount)
     {
         health = health + amount;
+        animator.SetBool("isHit", true);
     }
 }
