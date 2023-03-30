@@ -360,6 +360,7 @@
 -r:"Library/Bee/artifacts/2000b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/ArcherController.cs"
 "Assets/Scripts/Arrow.cs"
+"Assets/Scripts/CharacterCombat.cs"
 "Assets/Scripts/DivineBush.cs"
 "Assets/Scripts/Fireball.cs"
 "Assets/Scripts/FireballStatue.cs"

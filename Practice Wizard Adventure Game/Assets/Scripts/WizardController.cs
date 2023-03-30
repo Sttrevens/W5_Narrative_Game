@@ -29,7 +29,7 @@ public class WizardController : MonoBehaviour
 
     public GameObject fireballPrefab;
 
-    public float delayTime = 0;
+    public float delayTime = 1;
 
     private bool isWaiting = false;
 
@@ -38,6 +38,14 @@ public class WizardController : MonoBehaviour
 
     public float healthRecoveryTime = 0;
     public float manaRecoveryTime = 0;
+
+    public LayerMask enemyLayer;
+    public float attackRange = 1.0f;
+    public int damage = 10;
+
+    private bool isAttacking = false;
+    private float attackTimer = 0.0f;
+    private bool canCombo = false;
 
     //private bool isRecoveringHealth = false;
     //private bool isRecoveringMana = false;
@@ -128,13 +136,14 @@ public class WizardController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             if (canLaunch)
             {
                 if (!isWaiting)
                 {
                     isWaiting = true;
+                    animator.SetTrigger("Launch");
                     Invoke("Launch", delayTime);
                 }
                 //animator.SetBool("Launch", true);
@@ -151,7 +160,7 @@ public class WizardController : MonoBehaviour
             animator.SetBool("Launch", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             if (canFire)
             {
@@ -160,7 +169,7 @@ public class WizardController : MonoBehaviour
         }
 
         Vector3 lookDirection3D = new Vector3(lookDirection.x, lookDirection.y, 0);
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position + lookDirection3D, 1.0f);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position + lookDirection3D, 1.5f);
         if (stateInfo.IsName("Fire") && stateInfo.normalizedTime >= 1.0f)
         {
             // 遍历敌人，造成伤害
@@ -213,6 +222,65 @@ public class WizardController : MonoBehaviour
 
         //Invoke("recoverMana", manaRecoveryTime);
         //}
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (!isAttacking)
+            {
+                isAttacking = true;
+                Attack(1);
+            }
+            else if (canCombo)
+            {
+                Attack(2);
+            }
+        }
+
+        // 更新攻击计时器
+        if (isAttacking)
+        {
+            attackTimer += Time.deltaTime;
+
+            // 如果动画播放结束，重置状态
+            if (attackTimer >= stateInfo.length)
+            {
+                isAttacking = false;
+                animator.SetBool("Attack1", false);
+                canCombo = false;
+                animator.SetBool("Attack2", false);
+                attackTimer = 0;
+            }
+        }
+    }
+
+    private void Attack(int attackNumber)
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (attackNumber == 1)
+        {
+            animator.SetTrigger("Attack1");
+            canCombo = true;
+        }
+        else if (attackNumber == 2)
+        {
+            animator.SetTrigger("Attack2");
+            canCombo = false;
+        }
+
+        // 检测敌人并造成伤害
+        Vector3 lookDirection3D = new Vector3(lookDirection.x, lookDirection.y, 0);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position + lookDirection3D, 0.5f);
+        if (stateInfo.normalizedTime >= 1f)
+        {
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                if (enemy.CompareTag("Enemy"))
+                {
+                    // 调用造成伤害的函数
+                    enemy.GetComponent<ArcherController>().Hit(-1);
+                }
+            }
+        }
     }
 
     public void ChangeHealth(int amount)
@@ -253,8 +321,6 @@ public class WizardController : MonoBehaviour
 
             Fireball projectile = fireballObject.GetComponent<Fireball>();
             projectile.Launch(lookDirection, 300);
-
-            animator.SetTrigger("Launch");
 
             isWaiting = false;
         }

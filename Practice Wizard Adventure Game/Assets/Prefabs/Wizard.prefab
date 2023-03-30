@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2391662113690556686}
   - component: {fileID: 2391662113690556673}
   - component: {fileID: 2391662113690556672}
+  - component: {fileID: 4100012739641237075}
   - component: {fileID: 2391662113690556685}
   m_Layer: 6
   m_Name: Wizard
@@ -157,6 +158,24 @@ MonoBehaviour:
   delayTime: 0.5
   healthRecoveryTime: 0
   manaRecoveryTime: 1
+--- !u!114 &4100012739641237075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391662113690556675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2f547ad81664662a1f4cedeee6e8e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attackRange: 1
+  damage: 10
 --- !u!95 &2391662113690556685
 Animator:
   serializedVersion: 5
